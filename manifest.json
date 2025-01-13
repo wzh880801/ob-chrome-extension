@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "观测数据下载助手",
+  "version": "1.0",
+  "description": "观测数据下载助手",
+  "permissions": [
+    "cookies",
+    "activeTab",
+    "storage",
+    "scripting",
+    "host_permissions",
+    "tabs",
+    "webRequest",
+    "fileSystem"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "观测数据下载助手",
+
+    "default_icon": {
+      "32": "resources/icons/logo-32.png",
+      "16": "resources/icons/logo-16.png",
+      "24": "resources/icons/logo-24.png"
+    }
+  },
+  "icons": {
+    "16": "resources/icons/logo-16.png",
+    "24": "resources/icons/logo-24.png",
+    "32": "resources/icons/logo-32.png",
+    "48": "resources/icons/logo-48.png",
+    "128": "resources/icons/logo-128.png",
+    "256": "resources/icons/logo-256.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+} 

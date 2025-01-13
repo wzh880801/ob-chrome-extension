@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      width: 100%;
+      min-height: 100vh;
+      padding: 40px 0;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      color: #1a1a1a;
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    h3 {
+      margin: 0 0 24px 0;
+      color: #0066ff;
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .info-banner {
+      background-color: #f5f7fa;
+      color: #2c3e50;
+      padding: 16px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      font-size: 14px;
+      line-height: 1.6;
+      transition: all 0.2s ease;
+    }
+
+    .warn-banner {
+      background-color: #fff5f5;
+      color: #e53e3e;
+      padding: 16px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      border: 1px solid #fed7d7;
+      font-size: 14px;
+      line-height: 1.6;
+      transition: all 0.2s ease;
+    }
+
+    .search-history-item {     
+      padding: 16px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .item-white{
+      background-color: #ffffff;
+      color: #2d3748;
+      border: 1px solid #e2e8f0;
+    }
+
+    .item-gray{
+      background-color: #f8fafc;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+    }
+
+    .search-history-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-color: #cbd5e0;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    .download-btn {
+      width: 28px;
+      height: 28px;
+      background: url('resources/imgs/download.png') no-repeat center center;
+      background-size: 20px;
+      cursor: pointer;
+      margin-left: 12px;
+      opacity: 0;
+      transition: all 0.2s ease;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .download-btn:hover {
+      background-color: #f5f7fa;
+    }
+
+    .search-history-item:hover .download-btn {
+      opacity: 1;
+    }
+
+    @keyframes wave-loading {
+      0% {
+        background: linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #e6f3ff 50%,
+            #ffffff 100%
+          );
+        background-size: 200% 100%;
+        background-position: 0% 0%;
+      }
+      100% {
+        background: linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #e6f3ff 50%,
+            #ffffff 100%
+          );
+        background-size: 200% 100%;
+        background-position: 200% 0%;
+      }
+    }
+
+    .loading-wave {
+      animation: wave-loading 1.5s ease-in-out infinite;
+      background: #ffffff;
+      border-color: #cce4ff !important;
+      box-shadow: 0 2px 8px rgba(0, 128, 255, 0.08) !important;
+    }
+
+    .loading-wave .download-btn {
+      opacity: 0 !important;
+    }
+
+    .loading-wave:hover {
+      transform: none !important;
+      box-shadow: 0 2px 8px rgba(0, 128, 255, 0.08) !important;
+    }
+
+    @keyframes wave-success {
+      0% {
+        background: linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #e6ffef 50%,
+            #ffffff 100%
+          );
+        background-size: 200% 100%;
+        background-position: 0% 0%;
+      }
+      100% {
+        background: linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #e6ffef 50%,
+            #ffffff 100%
+          );
+        background-size: 200% 100%;
+        background-position: 200% 0%;
+      }
+    }
+
+    .download-success {
+      animation: wave-success 1.5s ease-in-out infinite;
+      background: #ffffff;
+      border-color: #ccffe4 !important;
+      box-shadow: 0 2px 8px rgba(0, 255, 128, 0.08) !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3>观测数据下载助手</h3>
+
+    <div class="info-banner">
+      1. 进入你要下载数据的页面，如页面加载
+      <br />
+      2. （可选）设置好搜索关键词 和 筛选条件（如时间等），执行一次搜索
+      <br />
+      3. 最近 10 条搜索历史会自动出现在下方，点击后面的<下载>按钮即可按照 2 中设置的条件将数据下载到本地
+    </div>
+
+    <div class="warn-banner">
+      下载过程中，请保持插件在前台运行，否则下载将中断
+    </div>
+
+    <div id="msg"></div>
+
+    <div id="result">
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

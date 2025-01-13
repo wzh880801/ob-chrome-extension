@@ -1,1 +1,1 @@
-# ob-chrome-extension
+[使用说明](https://bytedance.larkoffice.com/docx/Mn9Qd6Yu1okZtJxgnG1c4vnznVc)
