@@ -34,16 +34,18 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
     );
     const requestBody = JSON.parse(requestBodyString);
 
-    capturedRequests.push({
-      requestId: details.requestId,
-      url: details.url,
-      host: new URL(details.url).host,
-      requestBody: requestBody,
-      eventTypeStr: url.endsWith('/logs/search') ? '函数日志' : (EventTypes[requestBody.event_type] ? EventTypes[requestBody.event_type] : 'Unknown'),
-      method: details.method,
-      timestamp: details.timeStamp,
-      namespace: parseAppNamespace(details.url)
-    })
+    if (requestBody.event_type !== "all_event") {
+      capturedRequests.push({
+        requestId: details.requestId,
+        url: details.url,
+        host: new URL(details.url).host,
+        requestBody: requestBody,
+        eventTypeStr: url.endsWith('/logs/search') ? '函数日志' : (EventTypes[requestBody.event_type] ? EventTypes[requestBody.event_type] : 'Unknown'),
+        method: details.method,
+        timestamp: details.timeStamp,
+        namespace: parseAppNamespace(details.url)
+      })
+    }
   }
 
   return { requests: capturedRequests };
