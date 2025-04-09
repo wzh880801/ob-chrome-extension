@@ -86,7 +86,7 @@ async function displayRequests() {
       let writable = await fileHandle.createWritable();
       const isFunctionLog = request.eventTypeStr === '函数日志';
       if (isFunctionLog) {
-        await writable.write(`日志时间\t事件ID\t日志ID\t类型\t日志详情\n`)
+        await writable.write(`日志时间(GTM+08:00)\t等级\t日志内容\t日志 ID\t事件ID\t详情\n`)
       }
       else {
         //   await writable.write(`开始时间\t结束时间\t事件ID\t事件类型\t事件详情\n`)
@@ -144,7 +144,9 @@ async function displayRequests() {
 
           if (isFunctionLog) {
             for (const e of response.data.logs) {
-              await writable.write(`${e.timestamp}\t${e.event_id}\t${e.id}\t${e.level}\t${JSON.stringify(e)}\n`)
+              // await writable.write(`日志时间(GTM+08:00)\t等级\t日志内容\t日志 ID\t事件ID\t详情\n`)
+              const start_time = new Date(e.timestamp + 8 * 3600 * 1000).toISOString().replace('T', ' ').replace('Z', '');
+              await writable.write(`${start_time}\t${e.level}\t${e.content}\t${e.id}\t${e.event_id}\t${JSON.stringify(e)}\n`)
             }
           }
           else {

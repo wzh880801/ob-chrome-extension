@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "观测数据下载助手",
-  "version": "1.0",
+  "version": "1.1",
   "description": "观测数据下载助手",
   "permissions": [
     "cookies",
