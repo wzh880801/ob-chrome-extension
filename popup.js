@@ -146,7 +146,7 @@ async function displayRequests() {
             for (const e of response.data.logs) {
               // await writable.write(`日志时间(GTM+08:00)\t等级\t日志内容\t日志 ID\t事件ID\t详情\n`)
               const start_time = new Date(e.timestamp + 8 * 3600 * 1000).toISOString().replace('T', ' ').replace('Z', '');
-              await writable.write(`${start_time}\t${e.level}\t${e.content}\t${e.id}\t${e.event_id}\t${JSON.stringify(e)}\n`)
+              await writable.write(`${start_time}\t${e.level}\t${e.content && e.content.indexOf('\n') === -1 ? e.content : JSON.stringify(e.content)}\t${e.id}\t${e.event_id}\t${JSON.stringify(e)}\n`)
             }
           }
           else {
